@@ -9,12 +9,12 @@ for i = 1:size(currChildren,1)
 
             % Flip the bit.
             if (currChildren(i,j) == '0')
-                currChildren(i,j) = '1'
+                currChildren(i,j) = '1';
             else
-                currChildren(i,j) = '0'
+                currChildren(i,j) = '0';
             end
         end
     end
 end
 
-children = currChildren         
+children = currChildren;         
