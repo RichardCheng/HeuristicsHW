@@ -1,0 +1,1 @@
+function [solution, sbest]= GA(Xinitial, popsize, maxGen, pCrossover, pMutation)

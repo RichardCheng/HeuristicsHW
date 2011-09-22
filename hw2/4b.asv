@@ -1,0 +1,31 @@
+sinitial = floor(rand(30,2)*128);
+
+solutionset = [];
+sbestset = [];
+T0 = 231267670; 
+alpha = 0.9967;
+cputimeset = zeros(30,1);
+
+for i = 1:30
+    cputimeset(i) = cputime;
+    [solution, sbest] = SA(sinitial(i, :), T0, alpha, 1, 1, 1100);
+    cputimeset(i) = cputime - cputimeset(i);
+    solutionset(1:size(solution,1), 1:size(solution,2), i) = solution; 
+    sbestset(1:size(sbest,1), 1:size(sbest,2), i) = sbest; 
+end
+
+avgsolution = mean(solutionset,3); 
+
+%plot average of BestCost and CurCost
+figure
+hold on
+plot(avgsolution(1,:), avgsolution(2,:), 'b');
+plot(avgsolution(1,:), avgsolution(3,:), 'g'); 
+
+%report std/avg of BestCost after 1000 iters
+fprintf('average BestCost over all 30 runs after 1000 iterations is: %f\n', avgsolution(3, 1000));
+fprintf(' BestCost over all 30 runs after 1000 iterations is: %f\n', avgsolution(3, 1000));
+
+
+
+fprintf('average CPU time is: %f\n', mean(cputimeset)); 
