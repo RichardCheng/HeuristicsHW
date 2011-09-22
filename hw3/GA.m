@@ -1,6 +1,7 @@
-function [solution, sbest]= GA(Xinitial, popsize, maxGen, pCrossover, pMutation)
+function [solution, sbest]= GA(Xinitial, popsize, maxGen, pCrossover, pMutation, selectionMethod)
 population = Xinitial;
 fitness_pop = zeros(popsize, 1);
+fitness_children = zeros(popsize,1);
 
 solution = zeros(maxGen,3);
 sbest = zeros(maxGen,2);
@@ -16,9 +17,15 @@ for iter=1:maxGen
         solution(iter-1,2) = mean(fitness_pop);
     end
 
-    [parents1, parents2] = selection_R(population, popsize/2);
+    if (strcmp(selectionMethod, 'selection_T'))
+        [parents1, parents2] = selection_T(population, popsize/2);
+    elseif (strcmp(selectionMethod, 'selection_R'))
+        [parents1, parents2] = selection_R(population, popsize/2);
+    else
+        fprintf('check your inputs');
+    end
     children = crossover(parents1, parents2, pCrossover);
-    children = mutate(children, pMutation);
+    children = mutation(children, pMutation);
 
     % Calculate fitness for each children
     for i=1:popsize
@@ -32,13 +39,13 @@ for iter=1:maxGen
     % Put the answer into solution and sbest
     solution(iter,1) = iter;
     if (maxcVal > maxpVal);
-        sbestIter = bin2dec(children(maxcVal,:));
+        sbestIter = bin2dec(children(maxcIndex,:));
         solution(iter,3) = maxcVal;
     else
-        sbestIter = bin2dec(population(maxpVal,:));
+        sbestIter = bin2dec(population(maxpIndex,:));
         solution(iter,3) = maxpVal;
     end
-    sbest(iter, 1) = sbestIter / 128;
+    sbest(iter, 1) = floor(sbestIter / 128);
     sbest(iter, 2) = mod(sbestIter, 128);
     
     % Pick the best ones to stay
