@@ -4,9 +4,8 @@ M = zeros(length(s0));
 
 
 for i = 1 : length(s0)
-    M(i, :) = perturb(s0, i);
+    M(i, :) = s0;
+    M(i, i) = ~s0(i);
 end
 
-function s0 = perturb(s0, index)
-s0(index) = ~s0(index);
     
