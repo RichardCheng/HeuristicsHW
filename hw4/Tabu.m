@@ -5,7 +5,7 @@ s = sinitial;
 tabuInd = 1;
 BIGNUM = 100000;
 solution = zeros(iter, 3);
-scurrent = zeros(iter, size(sinitial, 1));
+scurrent = zeros(iter, length(sinitial));
 
 for i=1:iter
     neighbors = neighbor(s);
@@ -68,7 +68,7 @@ for i=1:iter
 end
 
 function bit = calcDiff(s1, s2)
-for i=1:size(s1,1)
+for i=1:length(s1)
     if (s1(i) ~= s2(i))
         bit = i;
         break;
