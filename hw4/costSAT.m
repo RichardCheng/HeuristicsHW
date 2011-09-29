@@ -4,10 +4,10 @@ global dataleng;
 
 unSAT = 0.;
 for i = 1 : dataleng
-    for i = 1 : 3
+    for j = 1 : 3
         unSAT = unSAT + 1.;
 
-        d = data(index, i);
+        d = data(i, j);
         if d > 0
             if (solution(d))
                 unSAT = unSAT - 1.;
