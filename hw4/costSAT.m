@@ -1,4 +1,5 @@
 function percent_unSAT = costSAT(solution)
+
 global data;
 leng = size(data, 1);
 
