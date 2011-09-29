@@ -10,12 +10,17 @@ scurrent = zeros(iter, length(sinitial));
 costs = zeros(1, length(sinitial)); 
 
 for i=1:iter
+    tic
     neighbors = neighborhood(s);
-
+    toc
+    
+    tic 
     for j=1:size(neighbors,1)
         costs(j) = costSAT(neighbors(j,:));
     end
-
+    toc
+    
+    tic
     [val, index] = min(costs);
     diff = calcDiff(s, neighbors(index,:));
 
@@ -74,6 +79,8 @@ for i=1:iter
     solution(i, 2) = val;
     solution(i, 3) = al;
     scurrent(i, :) = s;
+    toc
+    display('---')
 end
 
 function bit = calcDiff(s1, s2)

@@ -1,26 +1,29 @@
 function percent_unSAT = costSAT(solution)
 
-global data;
-leng = size(data, 1);
+global dataleng;
 
 unSAT = 0.;
-for i = 1 : leng
+for i = 1 : dataleng
     if ~clauseSAT(solution, i)
         unSAT = unSAT + 1.;
     end
 end
 
-percent_unSAT = unSAT / leng;
+percent_unSAT = unSAT / dataleng;
     
 function bool = clauseSAT(solution, index)
     global data;
-    C = data(index, :); 
     bool = 0;
     for i = 1 : 3
-        if sign(C(1)) == 1
-            v = solution(abs(C(i)));
+        d = data(index, i);
+        if d > 0
+            v = solution(abs(d));
         else
-            v = ~solution(abs(C(i)));
+            v = ~solution(abs(d));
         end
-        bool = bool | v; 
+        
+        if (v)
+            bool = 1;
+            break;
+        end
     end
