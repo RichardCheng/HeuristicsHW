@@ -17,13 +17,14 @@ function bool = clauseSAT(solution, index)
     for i = 1 : 3
         d = data(index, i);
         if d > 0
-            v = solution(abs(d));
+            if (solution(d))
+                bool = 1;
+                break;
+            end
         else
-            v = ~solution(abs(d));
-        end
-        
-        if (v)
-            bool = 1;
-            break;
+            if (~solution(-d)) 
+                bool = 1;
+                break;
+            end
         end
     end
