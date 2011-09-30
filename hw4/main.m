@@ -5,18 +5,22 @@ data = uf20_01;
 dataleng = size(uf20_01, 1); 
 
 
-s0 = zeros(1, 20);
-[solution, scurrent] = Tabu(10, s0, 100, 10);
+%s0 = zeros(1, 20);
+%[solution, scurrent] = Tabu(10, s0, 100, 20);
 
-sRand = randi([0, 1], 100, 20);
-result = zeros(20,1);
+samples = 100;
+%sRand = randi([0, 1], samples, 20);
+result = zeros(1,20);
+MAX_ITER = 100;
+
 
 for k = 1: 20
     k
-    for i = 1 : 100
-        [solution, ~] = Tabu(k, sRand(i, :), 100, 30);
-        result(k) = result(k) + solution(30, 3);
+    for i = 1 : samples
+        [solution, ~] = Tabu(k, sRand(i, :), 20, MAX_ITER);
+        result(k) = result(k) + solution(MAX_ITER, 3);
     end
+    result(k) = result(k) / samples;
 end
 
-plot(linspace(1,20),result);
+plot(1:20,result);

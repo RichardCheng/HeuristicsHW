@@ -17,12 +17,15 @@ for i=1:iter
     end
     
     [val, index] = min(costs);
-    diff = calcDiff(s, neighbors(index,:));
-
-    if (isempty(tabu==diff)) 
+    s = neighbors(index,:);
+    %diff
+    %tabu
+    
+    if (sum(tabu==index) == 0) 
+        %disp 'not tabued'
         % Not found
-        s = neighbors(index,:);
-        tabu(tabuInd) = diff;
+        %s = neighbors(index,:);
+        tabu(tabuInd) = index;
         tabuInd = tabuInd + 1;
         if tabuInd > tabuLen
             tabuInd = 1;
@@ -30,44 +33,44 @@ for i=1:iter
 
         % update al
         if (val < al)
-            % TODO: FIX THIS>>>
             al = val;
         end
     else
         if (val < al)
-            s = neighbors(index,:);
-            tabu(tabuInd) = diff;
+            disp 'tabued, improved'
+            %s = neighbors(index,:);
+            tabu(tabuInd) = index;
             tabuInd = tabuInd + 1;
             if tabuInd > tabuLen
                 tabuInd = 1;
             end
 
             % update al
-            % TODO: FIX THIS>>>
             al = val;
         else
-            % Find the next untabued result
-            costs(index) = BIGNUM;
-            [val, index] = min(costs);
+            %disp 'tabued, not improved'
             %fprintf('Begining cost... initCost = %f\n', val);
-            while (isempty(tabu==calcDiff(s, neighbors(index,:))) && val ~= BIGNUM)
+            while (sum(tabu==index) > 0)
                 costs(index) = BIGNUM;
                 [val, index] = min(costs);
+                if (val == BIGNUM) 
+                    break; 
+                end
                 %fprintf('new Cost = %f\n', val);
                 %fprintf('curr diff = %d\n', calcDiff(s, neighbors(index,:)));
-                %fprintf('result = %d\n', size(find(tabu==calcDiff(s, neighbors(index,:))),2));
+                %fprintf('result = %d\n', sum(tabu==calcDiff(s, neighbors(index,:))) == 0);
             end
 
-            if (val == BIGNUM) 
-                fprintf('Something is messed up in iteration %d dude... fix it.\n', i);
-            else
+            %if (val == BIGNUM && ~(i > tabuLen && tabuLen > length(sinitial))) 
+            %    fprintf('Something is messed up in iteration %d dude... fix it.\n', i);
+            %else
                 s = neighbors(index,:);
-                tabu(tabuInd) = diff;
+                tabu(tabuInd) = index;
                 tabuInd = tabuInd + 1;
                 if tabuInd > tabuLen
                     tabuInd = 1;
                 end
-            end
+           % end
         end 
     end
     solution(i, 1) = i;
@@ -77,12 +80,12 @@ for i=1:iter
 
 end
 
-function bit = calcDiff(s1, s2)
-bit = 0;
-for i=1:length(s1)
-    if (s1(i) ~= s2(i))
-        bit = i;
-        break;
-    end
-end
+% function bit = calcDiff(s1, s2)
+% bit = 0;
+% for i=1:length(s1)
+%     if (s1(i) ~= s2(i))
+%         bit = i;
+%         break;
+%     end
+% end
 
