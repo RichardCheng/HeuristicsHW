@@ -6,14 +6,24 @@ tabuInd = 1;
 BIGNUM = 100000;
 solution = zeros(iter, 3);
 scurrent = zeros(iter, length(sinitial));
-
-costs = zeros(1, length(sinitial)); 
+costs = zeros(1, length(sinitial));
 
 for i=1:iter
     neighbors = neighborhood(s);
-     
+
     for j=1:size(neighbors,1)
         costs(j) = costSAT(neighbors(j,:));
+        
+        if (costs(j) >= 1) 
+            j
+            costs
+            neighbors
+        end
+        
+%        if (sum(costs) > 20)
+%            costs
+%            neighbors
+%        end
     end
     
     [val, index] = min(costs);
@@ -37,7 +47,7 @@ for i=1:iter
         end
     else
         if (val < al)
-            disp 'tabued, improved'
+            %disp 'tabued, improved'
             %s = neighbors(index,:);
             tabu(tabuInd) = index;
             tabuInd = tabuInd + 1;
@@ -61,16 +71,16 @@ for i=1:iter
                 %fprintf('result = %d\n', sum(tabu==calcDiff(s, neighbors(index,:))) == 0);
             end
 
-            %if (val == BIGNUM && ~(i > tabuLen && tabuLen > length(sinitial))) 
-            %    fprintf('Something is messed up in iteration %d dude... fix it.\n', i);
-            %else
+            if (val == BIGNUM) 
+                fprintf('Something is messed up in iteration %d dude... fix it.\n', i);
+            else
                 s = neighbors(index,:);
                 tabu(tabuInd) = index;
                 tabuInd = tabuInd + 1;
                 if tabuInd > tabuLen
                     tabuInd = 1;
                 end
-           % end
+            end
         end 
     end
     solution(i, 1) = i;

@@ -5,9 +5,9 @@ global data;
 
 unSAT = 0.;
 for i = 1 : dataleng
+    
+    unSAT = unSAT + 1.;
     for j = 1 : 3
-        unSAT = unSAT + 1.;
-
         d = data(i, j);
         if d > 0
             if (solution(d))
@@ -24,3 +24,9 @@ for i = 1 : dataleng
 end
 
 percent_unSAT = unSAT / dataleng;
+
+if (percent_unSAT >= 1) 
+    unSAT
+    dataleng
+    solution
+end

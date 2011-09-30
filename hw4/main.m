@@ -8,19 +8,70 @@ dataleng = size(uf20_01, 1);
 %s0 = zeros(1, 20);
 %[solution, scurrent] = Tabu(10, s0, 100, 20);
 
+% samples = 100;
+% sRand = randi([0, 1], samples, 20);
+% result = zeros(1,19);
+% MAX_ITER = 100;
+% 
+% figure
+% hold on
+% for k = 1: 19
+%     k
+%     for i = 1 : samples
+%         [solution, ~] = Tabu(k, sRand(i, :), 20, MAX_ITER);
+%         result(k) = result(k) + solution(MAX_ITER, 3);
+%     end
+%     plot(solution(:,1), solution(:,2))
+%     result(k) = result(k) / samples;
+% end
+% 
+% figure
+% plot(1:19,result);
+
 samples = 100;
-%sRand = randi([0, 1], samples, 20);
-result = zeros(1,20);
+sRand = randi([0, 1], samples, 20);
 MAX_ITER = 100;
+k = 8;
 
+counter_a = 0;
+counter_b = 0.;
+counter_c = 0.;
 
-for k = 1: 20
-    k
-    for i = 1 : samples
-        [solution, ~] = Tabu(k, sRand(i, :), 20, MAX_ITER);
-        result(k) = result(k) + solution(MAX_ITER, 3);
+optsolution = zeros(20, 1); 
+    
+for i = 1 : samples
+    [solution, scurrent] = Tabu(k, sRand(i,:), 20, MAX_ITER);
+    
+    i
+    for j = 1:MAX_ITER 
+        if (solution(j, 2) == 0)
+            if (norm(optsolution) > 0 && norm(optsolution - scurrent(j,:)) > 0)
+                disp '4.a: MORE than one solution found for the problem'
+            else
+                if (norm(solution) == 0)
+                    optsolution = scurrent(j,:);
+                end
+            end
+        end
     end
-    result(k) = result(k) / samples;
+    
+    for j = 1:MAX_ITER
+        if (solution(j,2)==0)
+            counter_b = counter_b + j;
+            break;
+        end
+    end
+    
+    if (solution(MAX_ITER, 3) == 0) 
+        counter_a = counter_a + 1;
+    end
+    counter_c = counter_c + solution(MAX_ITER, 3);
 end
 
-plot(1:20,result);
+fprintf('4.a: %d of %d trials found optimal.\n', counter_a, samples);
+
+fprintf('4.b: On average, there are %f iterations till optimal is found\n', counter_b/counter_a);
+
+fprintf('4.c: On average, the best cost found is %f\n', counter_c/samples);
+
+
