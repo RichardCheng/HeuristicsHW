@@ -1,0 +1,5 @@
+The graphs in part i and ii both suggests that SA is better than GS, which is better than GA. 
+Then we performed two-sample t-test on all pairs of algorithms. From these calculations, we found that SA is better than GA, GS is better than GA, and SA is better than GS. This result is consistent with our observations from the graphs. 
+Next, after noting that SA and GS had the same starting solution, we performed paired t-test on the pair of algorithms and, again, found that SA is better than GS. 
+Lastly, we performed non-parametric comparisons for all pairwise algorithms. Once again, we obtained the result that SA is better than GA. However, we failed to reject the null hypothesis for the other two cases and cannot conclude with 95% confidence as to which test is better. 
+Based on the tests above, I would choose SA as the preferred algorithm to use. 
