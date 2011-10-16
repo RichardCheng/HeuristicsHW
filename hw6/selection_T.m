@@ -1,6 +1,6 @@
 % selects numPairs pairs of parents from population using fitness
 % proportional selection
-% returns two parent matrix of size numPair x 14
+% returns two parent matrix of size numPair x num_of_variables
 function [parent1, parent2] = selection_T(population, numPairs)
 
 sizePopulation = size(population, 1);
@@ -8,8 +8,11 @@ sizePopulation = size(population, 1);
 %cache fitness so we don't have to recalculate
 fitnessCache = zeros(sizePopulation, 1); 
 for i = 1: sizePopulation
-    fitnessCache(i) = fitness(population(i, :));
+    fitnessCache(i) = fitness2Q(population(i, :));
 end
+
+parent1 = zeros(numPairs, size(population, 2));
+parent2 = zeros(numPairs, size(population, 2));
 
 % for each pair
 for i = 1 : numPairs
