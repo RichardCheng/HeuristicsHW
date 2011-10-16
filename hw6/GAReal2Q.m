@@ -6,7 +6,7 @@ fitness_children = zeros(popsize,1);
 eliteSln = zeros(1, maxGen);
 
 for iter=1:maxGen
-    [parents1, parents2] = selection_T(population, popsize/2);
+    [parents1, parents2] = selection_T2Q(population, popsize/2);
 
     children = crossover(parents1, parents2, pCrossover);
     children = mutation(children, pMutation, V);
@@ -22,7 +22,7 @@ for iter=1:maxGen
     end
     
     [maxpVal, maxpIndex] = max(fitness_pop);
-    [~, mincIndex] = min(fitness_children);
+    [dummy, mincIndex] = min(fitness_children);
 
     % Put the answer into eliteSln
     eliteSln(iter) = maxpVal; 
