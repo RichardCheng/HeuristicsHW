@@ -1,0 +1,11 @@
+figure
+resolution = 500;
+x 
+[x, y] = meshgrid(linspace(-1,11,resolution), linspace(-1,11,resolution));
+costmap = zeros(resolution,resolution);
+for i = 1:resolution
+    for j = 1:resolution
+        costmap(i, j) = cost([i j]);
+    end
+end
+surf(x, y, costmap);
