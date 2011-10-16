@@ -1,4 +1,4 @@
-function children = mutation(children, pMutation)
+function children = mutation(children, pMutation, V)
 
 numChildren = size(children,1);
 numVar = size(children,2); 
@@ -8,6 +8,6 @@ for i = 1:numChildren;
     % If we satisfy the probability
     if rand() < pMutation
         varIndex = randi(numVar,1);
-        children(i, varIndex) = children(i, varIndex) + randn * V;
+        children(i, varIndex) = children(i, varIndex) + randn * sqrt(V);
     end
 end
