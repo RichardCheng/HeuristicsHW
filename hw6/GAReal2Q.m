@@ -1,4 +1,4 @@
-function eliteSln= GAReal(Xinitial, popsize, maxGen, pCrossover, pMutation, V)
+function eliteSln= GAReal2Q(Xinitial, popsize, maxGen, pCrossover, pMutation, V)
 population = Xinitial;
 fitness_pop = zeros(popsize, 1);
 fitness_children = zeros(popsize,1);
