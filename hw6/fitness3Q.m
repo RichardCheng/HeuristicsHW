@@ -1,4 +1,4 @@
-function result = fitness3Q(x, fmin)
+function [result, violation] = fitness3Q(x, fmin)
 [bumpres, violation] = bump3Q(x);
 if violation
     result = fmin - bumpres;

@@ -12,26 +12,24 @@ for i = 1:numChildren
 
         while ~found
             varIndex = randi(numVar,1);
-            tempsln = children(i, varIndex) + randn * sqrt(V);
-            
+            children(i, varIndex) = children(i, varIndex) + randn * sqrt(V);
+
             found = true; 
 
             %see if it's within bound
-            leng = length(tempsln); 
+            leng = length(x); 
             prod = 1; 
-            for ii = 1:leng
-                if (tempsln(ii) < 0 || tempsln(ii) > 10)
+            for i = 1:leng
+                if (x(i) < 0 || x(i) > 10)
                     found = false;
                     break;
                 end
-                prod = prod * tempsln(ii);
+                prod = prod * x(i);
             end 
 
             if prod < 0.75
                 found = false;
             end
         end
-        
-        children(i, varIndex) = tempsln; 
     end
 end
