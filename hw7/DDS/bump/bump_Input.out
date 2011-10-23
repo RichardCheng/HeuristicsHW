@@ -1,0 +1,60 @@
+This file lists all inputs for the Dynamically Dimensioned Search (DDS) Algorithm (ver 1.1) by Bryan Tolson.
+
+DDS algorithm used to MAXIMIZE the bump2.m function or program. 
+Date of optimization run: 23-Oct-2011 16:05:52 
+
+-------------------------------------------------------------------- 
+
+User has no additional comments on run.
+
+Decision variables are:
+
+Name       MIN       MAX 
+1       0.0000    10.0000 
+2       0.0000    10.0000 
+3       0.0000    10.0000 
+4       0.0000    10.0000 
+5       0.0000    10.0000 
+6       0.0000    10.0000 
+7       0.0000    10.0000 
+8       0.0000    10.0000 
+9       0.0000    10.0000 
+10      0.0000    10.0000 
+11      0.0000    10.0000 
+12      0.0000    10.0000 
+13      0.0000    10.0000 
+14      0.0000    10.0000 
+15      0.0000    10.0000 
+16      0.0000    10.0000 
+17      0.0000    10.0000 
+18      0.0000    10.0000 
+19      0.0000    10.0000 
+20      0.0000    10.0000 
+
+DDS neighborhood size parameter:  0.200000 
+Number of optimization trials with above parameters:     20   
+Number of total objective function evaluations per trial:  10000   
+
+Program randomly generated initial solutions.
+Matlab version 5 and higher random number generator used for this run.
+   User entered random state 1 as:  568768723
+   User entered random state 2 as:  787232345
+For each trial,    50 random initial solutions are evaluated & best is initial DDS solution.
+To replicate these results use random initial solution and the same 2 random states.
+Use initial solution file bump_ini.out and vary random states for more optimization trials 
+to start at the initial solutions for this run.
+
+More OUTPUT files written by program are as follows:
+    bump_ini.out contains initial solutions used in all trials.
+        - Row 1 is trial 1, Row 2 is trial 2, etc.  Dec Vars 1 thru D in columns 1 thru D.
+    20 files named bump_#.out store Jbest, Jtest and Dec Vars by iter# for each trial.
+    20 files named bump_sbest#.out store best decision variable (Dec Var) values (i.e. solutions) for each trial.
+        - Row 1 is trial 1, Row 2 is trial 2, etc.  Variables 1 thru D in columns 1 thru D.
+    bump_AVG.out contains averaged output data across trials - Jbest and Jtest.
+    bump_sbest.out contains the best decision variable values found for all trials.
+        - Row 1 is trial 1, Row 2 is trial 2, etc.  Dec Vars 1 thru D in columns 1 thru D.
+    bump_trials.out contains Jbest for all iterations across all trials.
+        - Column 1 is Jbest from trial 1, Col 2 from trial 2 etc...
+
+ Note that Jbest -> is the best value of the objective function found so far and 
+          Jtest -> is the objective function value of the test, or candidate solution. 

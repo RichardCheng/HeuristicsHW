@@ -1,0 +1,13 @@
+
+Tinitial = 1.008; 
+alpha = 0.999657; 
+repetition = 20; 
+r = 100.*rand(repetition,20);
+bestsolution = zeros(repetition,1); 
+for i = 1: repetition
+    i
+    [solution, ~] = SA(r(i,:), Tinitial, alpha, 1, 1, 10000);
+    bestsolution(i) = solution(10000, 3); 
+end
+    
+plot(1:repetition, bestsolution); 

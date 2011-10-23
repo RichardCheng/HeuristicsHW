@@ -1,0 +1,15 @@
+% Comment line 1:  READ WITH WORD WRAP OFF.  Input control file for Matlab DDS ver1.1mp algorithm.    
+% Comment line 2:  Inputs start on line 3. Inputs must be followed by a space or "%" symbol. Some lines can be blank.
+bump2      	% 3. MATLAB m-file function (without .m extension) OR executable file (as *.exe) OR batch file (*.bat)
+bump            	% 4. compact name to append to all algorithm output files
+20	        % 5. number of optimization trials to run
+10000            % 6. maximum number of objective function evaluations per optimization trial
+568768723	% 7. random integer to fix Matlab random number generators
+787232345	% 8. 2nd random integer to fix Matlab random number generators
+0               % 9. Print flag: "0" saves all DDS outputs (max # files) or "1" to save only summary info (min # of files)
+                % 10. blank if random initial solutions, else Enter filename (exponential or free format, rows are sols, columns are DVs) holding initial soln matrix
+                % 11. If applicable, enter subdirectory name (or full directory path) containing objective function file (.m, .exe or .bat), else leave blank
+% ! next line ! % 12. On NEXT LINE, enter any other comments to save about this run (100 char max):
+
+-1               % 14. MAX problem (enter "-1") or MIN problem (enter "1")
+0.2             % 15. r_val, DDS neighborhood size parameter (0.2 is default and works well).  Allowable range is (0.0, 1.0].  If you experiment with r_val, reduce to <0.2
