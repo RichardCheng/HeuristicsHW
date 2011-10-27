@@ -27,7 +27,7 @@ hold on
 plot(xdds,fdds, 'r');
 plot(xga,fga, 'g');
 plot(xsa,fsa, 'b');
-xlabel('cumulative probability');
-ylabel('objective function value');
+ylabel('cumulative probability');
+xlabel('objective function value');
 title('Empirical CDF for DDS, GA, and SA');
 legend('DDS', 'GA', 'SA');
