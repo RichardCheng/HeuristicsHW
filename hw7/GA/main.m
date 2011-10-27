@@ -4,7 +4,7 @@ POP_SIZE = 50;
 ITERATION = 200;
 P_MUTATION = 0.7;
 P_CROSSOVER = 0.5;
-V = 3;
+V = 5;
 
 res = zeros(1, 20); 
 result = zeros(ITERATION, 20); 
@@ -27,4 +27,4 @@ end
 
 fprintf(']\n'); 
 
-plot(50:50:10000, bestsolution, 'r'); 
+plot(POP_SIZE:POP_SIZE:10000, bestsolution, 'r'); 

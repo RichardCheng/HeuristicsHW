@@ -1,6 +1,9 @@
 
-Tinitial = 1.008; 
-alpha = 0.999657; 
+%Tinitial = 1.008; 
+%alpha = 0.999657; 
+
+Tinitial = 0.00585; 
+alpha = 0.99995; 
 repetition = 20; 
 r = 10.*rand(repetition,20);
 bestsolution = zeros(10000,1); 
@@ -10,7 +13,7 @@ fprintf('running SA:\n[');
 for i = 1: repetition
     [solution, ~] = SA(r(i,:), Tinitial, alpha, 1, 1, 10000);
     bestsolution = (bestsolution .* (i-1) + solution(:, 3)) ./ i; 
-    
+     
     fprintf('%d ', solution(10000, 3));
     
 end
