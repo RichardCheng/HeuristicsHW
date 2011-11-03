@@ -1,0 +1,32 @@
+digraph finite_state_machine {
+S1;S2;S3;S4;S5;S6;S7	
+S1 -> S6 [ label = "0.25" ];
+S1 -> S7 [ label = "0.25*e^(-1/2)" ];
+S1 -> S2 [ label = "0.25*e^(-5/2)" ];
+S1 -> S3 [ label = "0.25" ];
+S2 -> S7 [ label = "0.25" ];
+S2 -> S1 [ label = "0.25" ];
+S2 -> S3 [ label = "0.25" ];
+S2 -> S4 [ label = "0.25" ];
+S3 -> S1 [ label = "0.25*e^(-5/2)" ];
+S3 -> S2 [ label = "0.25*e^-5" ];
+S3 -> S4 [ label = "0.25*e^(-3/2)" ];
+S3 -> S5 [ label = "0.25*e^-2" ];
+S4 -> S2 [ label = "0.25*e^(-7/2)" ];
+S4 -> S3 [ label = "0.25" ];
+S4 -> S5 [ label = "0.25*e^(-1/2)" ];
+S4 -> S6 [ label = "0.25" ];
+S5 -> S3 [ label = "0.25" ];
+S5 -> S4 [ label = "0.25" ];
+S5 -> S6 [ label = "0.25" ];
+S5 -> S7 [ label = "0.25*e^-1" ];
+S6 -> S4 [ label = "0.25*e^-1" ];
+S6 -> S5 [ label = "0.25*e^(-3/2)" ];
+S6 -> S7 [ label = "0.25*e^(-5/2)" ];
+S6 -> S1 [ label = "0.25*e^-2" ];
+S7 -> S5 [ label = "0.25" ];
+S7 -> S6 [ label = "0.25" ];
+S7 -> S1 [ label = "0.25" ];
+S7 -> S2 [ label = "0.25*e^-2" ];
+
+}
