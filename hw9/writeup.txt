@@ -1,0 +1,41 @@
+1. 
+a) Draw the graph...
+Why no self loop: 
+For both 1 and 4, all the neighbors cost less than the current state. Thus,
+whenever selecting a neighbor, the move will always happen. It's impossible to
+stay at the current state. 
+b) Extract it from the graph...
+c)/d)/e) Same.
+f) Yes. We need to set the temperature high enough so that the algorithm
+reaches the optimal solution for any inital conditions. We also need to set
+the temparture low enough so that we reach the global minimum with high enough
+probability.
+
+2. 
+a) This is greedy search. Since the probability of moving is always 1/3 for
+all potential moves, it cannot be a simulated annealing(where the probability
+of uphill move is 1/2*Exp(deltaT/T)). 
+b) The neighbors of 1 is {2, 4, 5}. Since the move probability from 1 to these
+states are 1/3 each.
+c) The neighbors of 2 is {1, 3, 4}. We firstly notice that M23 = M24 = 1/3,
+this means that 3 and 4 are neighbors of 2 and are better than 2. That leaves
+up with one unknown neighbor that is worse than 2. We also notice that M35 >
+0, meaning 5 is better than 3, and therefore it cannot be the neighbor of
+2(otherwise, M25 will > 0, as it's a better solution.) Thus 5 cannot be the
+other neighbor. We notice that 6 cannot be the other neighbor, as we noticed
+M66 = 1, meaning 6 is a local minimum. And therefore 6 has to be better than
+at least 3 of its neighbors. If 6 is to be a neighbor of 2, then 2 will need
+to be better than 4 states(including 6 and its 3 neighbors). This is
+impossible as we showed both 3, 4, and 5 are better than 2. Thus, the
+remaining neighbor can only be 1. 
+d) 1/3. As the possibilities of moving to all states have to sum to 1. 
+e) 0. For the same reason as d)
+f) 1 < 2, 2 < 3, 2 < 4, 3 < 5. This gives us:(from maximum to minimum):
+1, 2, 3, (456)
+g) Yes. Both 5 and 6 are local optimum. 4 Could also be a local optimum. As we
+have identified the sequence of 1,2,3. For the rest, we could assign 4,5,6 to
+have neighbors 1,2,3. Then, all of them are local optimum. We could not infer
+from the table which one is better/equal to each other for 4,5,6.
+
+3. 
+
